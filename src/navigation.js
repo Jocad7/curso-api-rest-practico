@@ -12,7 +12,8 @@ searchFormBtn.addEventListener('click', () => {
 })
 
 arrowBtn.addEventListener('click', () => { 
-    location.hash = '#home'
+    history.back(); // <----------------------
+    // location.hash = '#home'
     
 })
 trendingBtn.addEventListener('click', () => {
