@@ -3,17 +3,19 @@
 window.addEventListener('hashchange', navigator, false);
 window.addEventListener('DOMContentLoaded', navigator, false);
 
-searchFormBtn.addEventListener('click', () => {
+searchFormBtn.addEventListener('click', () => {   
     let regex = /\w/g;
-    regex.test(searchFormInput.value) ? location.hash = '#search=' : location.hash &&  alert('Desbes ingresar algun caracter en la busqueda')
+    regex.test(searchFormInput.value) ? 
+    location.hash = '#search=' + searchFormInput.value.trim() : 
+    location.hash = '#home' &&  alert('Desbes ingresar algun caracter en la busqueda');
    
-    // searchFormInput.value !== '' ? location.hash = '#search=' : alert('Desbes ingresar algun caracter en la busqueda')
-    
 })
 
+
 arrowBtn.addEventListener('click', () => { 
-    history.back(); // <----------------------
     // location.hash = '#home'
+    history.back();
+      
     
 })
 trendingBtn.addEventListener('click', () => {
@@ -25,15 +27,18 @@ function navigator() {
     console.log({ location });
 
     if(location.hash.startsWith('#trends')){
+        
         trends();
     } else if(location.hash.startsWith('#search=')) {
         searchPage();
     } else if(location.hash.startsWith('#movie=')) {
+        
         movieDetails();
     } else if(location.hash.startsWith('#category=')) {
         categoriesPage();
     } else {
         homePage();
+
     }
     scrollTo( 0, 0 )
     trendingMoviesPreviewList.scrollTo(0,0);
@@ -82,8 +87,8 @@ function trends() {
 
 function searchPage() {
     console.log ('search!!')
-    location.hash = `#search=${searchFormInput.value.trim()}`.split('%20').join('-');
-
+    // location.hash = `#search=${searchFormInput.value.trim()}`.split('%20').join('-');
+    
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
@@ -98,10 +103,14 @@ function searchPage() {
     movieDetailSection.classList.add('inactive');
 
     // ['#search', 'busqueda']
-    const [_, searchValue] = location.hash.split('=');
-    const query = searchValue.split('%20').join(' ');
+    const [_, query] = location.hash.split('=');
+    // const query = searchValue.split('%20').join(' ');
     
-    getMoviesBySearch(query);
+    getMoviesBySearch(
+        query.includes('%20') ?
+        query.split('%20').join(' ') :
+        query
+        );
 }
 
 
