@@ -32,6 +32,10 @@ function createMovies(movies, container) {
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
     movieImg.setAttribute('src', URL_IMG + movie.poster_path);
+    movieImg.onerror = () => {
+        movieImg.setAttribute('src', 'https://media.istockphoto.com/photos/broken-glass-background-in-black-black-minimalist-background-with-on-picture-id1247644004?k=20&m=1247644004&s=612x612&w=0&h=kUXvgGjWMYNOhh1qKM2E9EXvp6PchSCudjObrB0P5zw=')
+        movieImg.setAttribute('alt','Broken-url-img')
+    }
 
 
     container.appendChild(movieContainer);
@@ -227,17 +231,25 @@ async function getMovieById(id) {
     movieDetailTitle.textContent = movie.title;
     movieDetailDescription.textContent = movie.overview;
     movieDetailScore.textContent = movie.vote_average.toFixed(1);
-    
-    const urlLargeWidth = URL_IMG.replace('w300', 'w500')
+
+    let posterImgError = "https://media.istockphoto.com/photos/broken-glass-background-in-black-black-minimalist-background-with-on-picture-id1247644004?k=20&m=1247644004&s=612x612&w=0&h=kUXvgGjWMYNOhh1qKM2E9EXvp6PchSCudjObrB0P5zw=";
+
+    const urlLargeWidth = URL_IMG.replace('w300', 'w500');
+
+    movie.poster_path === null ?
+    headerSection.style.background = `
+    linear-gradient(
+        180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
+    url(${posterImgError})`:
     headerSection.style.background = `
     linear-gradient(
         180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
     url(${urlLargeWidth}${movie.poster_path})`;
-
+        
+      
     createCategories(movie.genres, categoryList);
     /*peliculas relacionadas*/
-    getRelatedMoviesId(id)
-   
+    getRelatedMoviesId(id) 
 }
 
 async function getRelatedMoviesId(id) {

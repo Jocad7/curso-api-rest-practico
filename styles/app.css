@@ -142,6 +142,7 @@ button {
   position: fixed;
   top: 0;
   width: 100%;
+  
 }
 
 .header-container--categoryView {
@@ -300,6 +301,7 @@ button {
 
 .genericList-container .movie-img {
   width: 100%;
+  
 }
 
 
