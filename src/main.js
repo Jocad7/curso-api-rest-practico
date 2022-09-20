@@ -16,7 +16,21 @@ const URL_IMG = 'https://image.tmdb.org/t/p/w300';
 
 /*Utils DRY*/
 
-function createMovies(movies, container) {
+function target(entries) {
+    entries.forEach((entry) => {
+        console.log({entry});
+        if(entry.isIntersecting === true){
+            const url = entry.target.getAttribute('data-img');
+            entry.target.setAttribute('src', url);
+        }
+    })
+}
+
+const lazyLoader = new IntersectionObserver(target);
+
+
+
+function createMovies(movies, container, lazyLoad = false) {
    container.innerHTML = '';
    
    movies.forEach( movie => {
@@ -31,12 +45,15 @@ function createMovies(movies, container) {
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
-    movieImg.setAttribute('src', URL_IMG + movie.poster_path);
+    movieImg.setAttribute(lazyLoad ? 'data-img': 'src', URL_IMG + movie.poster_path);
     movieImg.onerror = () => {
         movieImg.setAttribute('src', 'https://media.istockphoto.com/photos/broken-glass-background-in-black-black-minimalist-background-with-on-picture-id1247644004?k=20&m=1247644004&s=612x612&w=0&h=kUXvgGjWMYNOhh1qKM2E9EXvp6PchSCudjObrB0P5zw=')
         movieImg.setAttribute('alt','Broken-url-img')
     }
 
+    if(lazyLoad){
+        lazyLoader.observe(movieImg);
+    }
 
     container.appendChild(movieContainer);
     movieContainer.appendChild(movieImg);
@@ -59,7 +76,7 @@ function createCategories(categories, container) {
         categoryTitle.setAttribute('id', 'id' + category.id);
         categoryTitle.addEventListener('click', () => {
             location.hash =`#category=${category.id}-${category.name}`;
-            headerTitleCategory.innerHTML = category.name == 'Suspense' ? 'Suspenso' : category.name;
+            headerCategoryTitle.innerHTML = category.name == 'Suspense' ? 'Suspenso' : category.name;
         })
         const categoryTitleText = document.createTextNode(`${
             category.name == 'Suspense' ? 'Suspenso' : category.name
@@ -107,7 +124,7 @@ async function getTrendingMoviesPreview() {
     console.log({ data, movies }); 
     
 
-    createMovies(movies, trendingMoviesPreviewList);
+    createMovies(movies, trendingMoviesPreviewList, true);
 
     // trendingMoviesPreviewList.innerHTML = '';
     // movies.forEach( movie => {
@@ -179,7 +196,7 @@ async function getMoviesByCategories(id) {
 
     console.log({ data, movies }); 
 
-    createMovies(movies, genericSection);
+    createMovies(movies, genericSection, true);
     // genericSection.innerHTML = '';
     // movies.forEach( movie => {
        
@@ -209,7 +226,7 @@ async function getMoviesBySearch(searchValue) {
     const movies = data.results;
 
 
-    createMovies(movies, genericSection);
+    createMovies(movies, genericSection, true);
    
 }
 
@@ -220,8 +237,28 @@ async function getTrendingMovies() {
 
     console.log({ data, movies }); 
     createMovies(movies, genericSection)
+
+    const loadMoreBtn = document.createElement('button');
+    loadMoreBtn.classList.add('loadMoreButton')
+    loadMoreBtn.style.borderRadius= '8px';
+    loadMoreBtn.style.padding= '8px';
+
+    loadMoreBtn.innerHTML ='Cargar mas';
+    genericSection.appendChild(loadMoreBtn);
+
+    loadMoreBtn.addEventListener('click', getPaginatedTrendingMovies());
 }
 
+
+async function getPaginatedTrendingMovies() {
+    const { data } = await api(trendingEndpoint, {
+        params: {
+            page: 2
+        },
+    });
+
+    const movies = data.results;
+}
 
 async function getMovieById(id) {
     

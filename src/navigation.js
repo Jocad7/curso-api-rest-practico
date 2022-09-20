@@ -14,8 +14,7 @@ searchFormBtn.addEventListener('click', () => {
 
 arrowBtn.addEventListener('click', () => { 
     // location.hash = '#home'
-    history.back();
-      
+    history.back();   
     
 })
 trendingBtn.addEventListener('click', () => {
@@ -80,7 +79,7 @@ function trends() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
-    headerTitleCategory.innerHTML = 'Tendencias';
+    headerCategoryTitle.innerHTML = 'Tendencias';
     getTrendingMovies();
 }
 
@@ -151,8 +150,38 @@ function categoriesPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     const [_, categoryData] = location.hash.split('=');
+    
     const [categoryId, categoryName] = categoryData.split('-');
    
+// switch(categoryId){
+//         case('10402'):
+//             headerCategoryTitle.innerHTML = 'Música';
+//             break;
+//         case('28'):
+//             headerCategoryTitle.innerHTML = 'Acción';
+//             break;
+//         case  ('16'):
+//             headerCategoryTitle.innerHTML = 'Animación';
+//             break;
+//         case ('14'):
+//             headerCategoryTitle.innerHTML = 'Fantasía';
+//             break;
+            
+//         case ('878'):
+//             headerCategoryTitle.innerHTML = 'Ciencia ficción';
+//             break;
+//         case ('10770'):
+//             headerCategoryTitle.innerHTML = 'Película de TV';
+//             break;
+//         case ('10752'):
+//             headerCategoryTitle.innerHTML = 'Bélica';
+//             break;
+//         default:
+//             headerCategoryTitle.innerHTML = 
+//             categoryName == 'Suspense' ? 'Suspenso' : categoryName;
+//             break;
+// }
+//    console.log(categoryName)
    getMoviesByCategories(categoryId)
 }
 

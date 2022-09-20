@@ -1,4 +1,5 @@
 {
     "workbench.colorTheme": "Abyss",
-    "workbench.preferredDarkColorTheme": "Default Dark+"
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "liveServer.settings.port": 5501
 }
