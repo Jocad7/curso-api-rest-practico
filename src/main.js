@@ -2,7 +2,7 @@
 const lang= localStorage.language;
 lan.value = lang !== '' ? lang: 'en';
 
-if(lang.value == "en"){
+if(lan.value == "en"){
     trendingPreviewTitle.innerHTML = 'Trends'
 }
 lan.addEventListener('change', () => {
@@ -473,4 +473,5 @@ function hiddeLikedSectionEmpty() {
         likedTitle.classList.add('inactive');
         likedMovieListArticle.classList.add('inactive');
     } 
+    
 }
