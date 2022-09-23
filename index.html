@@ -16,6 +16,13 @@
   <header id="header" class="header-container header-container--long">
     <span class="header-arrow">&lt;</span>
     <h1 class="header-title inactive">Jd Movies</h1>
+    <select name="languaje" id="lang">
+      <option class="optLang" value="fr">🇫🇷</option>
+      <option class="optLang" value="es-ES">🇪🇸</option>
+      <option class="optLang" value="en">🇺🇸</option>
+      <option class="optLang" value="pt-BR">🇧🇷</option>
+      <option class="optLang" value="es-VE">🇻🇪</option>
+    </select>
     <h1 class="header-title header-title--categoryView">1</h1>
 
     <form id="searchForm" class="header-searchForm inactive">
@@ -63,6 +70,28 @@
     </article>
   </section>
 
+  <section id="liked" class="liked-container">
+    <div class="liked-header">
+      <h2 class="liked-title">Peliculas Favoritas</h2>
+    </div>
+    <article class="liked-movieList">
+      <div class="movie-container movie-container--loading">
+         <!-- <img
+          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+          class="movie-img"
+          alt="Nombre de la película"
+        />  -->
+      </div>
+      <div class="movie-container movie-container--loading">
+      </div>
+      <div class="movie-container movie-container--loading">
+      </div>
+      <div class="movie-container movie-container--loading">
+      </div>
+      
+    </article>
+  </section>
+
   <section id="genericList" class="genericList-container inactive">
     <div class="movie-container movie-container--loading"></div>
     <div class="movie-container movie-container--loading"></div>
@@ -76,9 +105,10 @@
         src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
         class="movie-img"
         alt="Nombre de la película"
-      />
-    </div> -->
+      /> -->
+    </div> 
   </section>
+  <div class="button-container inactive"></div>
 
   <section id="movieDetail" class="movieDetail-container inactive">
     <h1 class="movieDetail-title">Deadpool</h1>
