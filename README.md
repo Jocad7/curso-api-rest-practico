@@ -14,6 +14,7 @@ Frontend mentor challenge, Article preview component
 
 ### What I learned
 - Root variables in css
+- create like buttons and some animations
 - Filter searchs
 - Manipulate api data from moviedb
 - Intersecting Observer
@@ -24,4 +25,4 @@ Frontend mentor challenge, Article preview component
 ## Author
 
 - Website - [Live website](https://curso-api-rest-practico.vercel.app)
-- Frontend Mentor - [@Jocad7](https://www.frontendmentor.io/profile/Jocad7)
+- Platzi - [Profile](https://platzi.com/p/jdaniel.c74/)
