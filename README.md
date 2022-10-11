@@ -1,7 +1,9 @@
 # API REST practice course @Platzi
 
 <kbd>
+  <a href= "https://curso-api-rest-practico.vercel.app">
   <img src='screenshot.png' width='300px' height='400px'>
+   </a>
 </kbd>
 
 ### Built with
@@ -23,5 +25,5 @@
 
 ## Author
 
-- Website - [Live website](https://curso-api-rest-practico.vercel.app)
-- Platzi - [Profile](https://platzi.com/p/jdaniel.c74/)
+- Website - [Live website](https://curso-api-rest-practico.vercel.app){:target="_blank"} 
+- Platzi - [Profile](https://platzi.com/p/jdaniel.c74/){:target="_blank" rel="noopener"}
