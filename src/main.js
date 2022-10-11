@@ -84,14 +84,29 @@ function createMovies(
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
     
+    movieContainer.addEventListener('click', (e) => {
+        if(e.target && e.target.tagName === 'BUTTON'){
+            movieBtn.classList.toggle('movie-btn--liked');
+        //muestro o oculto la seccion de peliculas favoritas, uso un setTimeOut para esconder la seccion de favoritos cuando esta vacia
+        likedTitle.classList.remove('inactive');
+        likedMovieListArticle.classList.remove('inactive');
+       setTimeout(hiddeLikedSectionEmpty, 400);
+        likeMovie(movie);
+        
+        getLikedMovies();
+        }
+        if(e.target && e.target.tagName === 'IMG'){
+            location.hash = `#movie=${movie.id}`;
+        }
+    });
 
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
     movieImg.setAttribute(lazyLoad ? 'data-img': 'src', URL_IMG + movie.poster_path);
-    movieImg.addEventListener('click', ()=>{
-        location.hash = `#movie=${movie.id}`
-    })
+    // movieImg.addEventListener('click', ()=>{
+    //     location.hash = `#movie=${movie.id}`
+    // })
     movieImg.onerror = () => {
         movieImg.setAttribute('src', 'https://media.istockphoto.com/photos/broken-glass-background-in-black-black-minimalist-background-with-on-picture-id1247644004?k=20&m=1247644004&s=612x612&w=0&h=kUXvgGjWMYNOhh1qKM2E9EXvp6PchSCudjObrB0P5zw=')
         movieImg.setAttribute('alt','Broken-url-img')
@@ -100,17 +115,18 @@ function createMovies(
     const movieBtn = document.createElement('button');
     movieBtn.classList.add('movie-btn');
     likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
+
     
-    movieBtn.addEventListener('click', () => {
-        movieBtn.classList.toggle('movie-btn--liked');
-        //muestro o oculto la seccion de peliculas favoritas, uso un setTimeOut para esconder la seccion de favoritos cuando esta vacia
-        likedTitle.classList.remove('inactive');
-        likedMovieListArticle.classList.remove('inactive');
-       setTimeout(hiddeLikedSectionEmpty, 300);
-        likeMovie(movie);
+    // movieBtn.addEventListener('click', () => {
+    //     movieBtn.classList.toggle('movie-btn--liked');
+    //     //muestro o oculto la seccion de peliculas favoritas, uso un setTimeOut para esconder la seccion de favoritos cuando esta vacia
+    //     likedTitle.classList.remove('inactive');
+    //     likedMovieListArticle.classList.remove('inactive');
+    //    setTimeout(hiddeLikedSectionEmpty, 400);
+    //     likeMovie(movie);
         
-        getLikedMovies();
-    })
+    //     getLikedMovies();
+    // })
 
     if(lazyLoad){
         lazyLoader.observe(movieImg);
@@ -418,7 +434,7 @@ async function getPaginatedTrendingMovies() {
 async function getMovieById(id) {
     
     const { data: movie } = await api(`/movie/${id}`);
-    console.log(movie);
+    // console.log(movie);
 
     movieDetailTitle.textContent = movie.title;
     movieDetailDescription.textContent = movie.overview;
@@ -473,5 +489,7 @@ function hiddeLikedSectionEmpty() {
         likedTitle.classList.add('inactive');
         likedMovieListArticle.classList.add('inactive');
     } 
+    //this part update like button on trending preview section when put unlike on favorite section
+    // getTrendingMoviesPreview();
     
 }
