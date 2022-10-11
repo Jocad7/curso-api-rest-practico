@@ -1,9 +1,8 @@
 # API REST practice course @Platzi
-Frontend mentor challenge, Article preview component
 
-### Screenshot
-
-![](screenshot.png)
+<kbd>
+  <img src='screenshot.png' width='300px' height='400px'>
+</kbd>
 
 ### Built with
 - Semantic HTML5 markup
