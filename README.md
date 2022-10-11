@@ -25,5 +25,5 @@
 
 ## Author
 
-- Website - [Live website](https://curso-api-rest-practico.vercel.app){:target="_blank"} 
-- Platzi - [Profile](https://platzi.com/p/jdaniel.c74/){:target="_blank" rel="noopener"}
+- Website - [Live website](https://curso-api-rest-practico.vercel.app)
+- Platzi - [Profile](https://platzi.com/p/jdaniel.c74/)
